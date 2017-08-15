@@ -1,6 +1,6 @@
 {
   "name": "Puestos2K",
-  "app_id": "",
+  "app_id": "c3e5da4f",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}

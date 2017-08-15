@@ -33,6 +33,8 @@ export class IngresoPage {
     console.log('scanner');
     this.barcodeScanner.scan().then((barcodeData) => {
       console.log('Success! Barcode data is here');
+      console.log(barcodeData.text);
+      this.registerCredentials.codigo = barcodeData.text;
      }, (err) => {
       console.log('An error occurred');
      });
