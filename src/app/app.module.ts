@@ -8,6 +8,9 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import {IngresoPage} from '../pages/ingreso/ingreso';
 import { BarcodeScanner  } from '@ionic-native/barcode-scanner';
+import { PuestoProvider } from '../providers/puesto/puesto';
+import {HttpModule} from '@angular/http';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -16,6 +19,7 @@ import { BarcodeScanner  } from '@ionic-native/barcode-scanner';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -28,7 +32,8 @@ import { BarcodeScanner  } from '@ionic-native/barcode-scanner';
     StatusBar,
     SplashScreen,
     BarcodeScanner,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    PuestoProvider
   ]
 })
 export class AppModule {}
