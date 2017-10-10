@@ -5,35 +5,39 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
-import {IngresoPage} from '../pages/ingreso/ingreso';
+import { IngresoPage, HomePage, LoginPage,MapaPage,MensagePage,SalidaPage } from '../pages/index.paginas';
+
 import { BarcodeScanner  } from '@ionic-native/barcode-scanner';
 import { PuestoProvider } from '../providers/puesto/puesto';
 import {HttpModule} from '@angular/http';
+import { ConnectorProvider } from '../providers/connector/connector';
+import { IonicStorageModule } from '@ionic/storage';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
-    IngresoPage
+    IngresoPage, HomePage, LoginPage,MapaPage,MensagePage,SalidaPage
   ],
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
-    IngresoPage
+    IngresoPage, HomePage, LoginPage,MapaPage,MensagePage,SalidaPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     BarcodeScanner,
+    InAppBrowser,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    PuestoProvider
+    PuestoProvider,
+    ConnectorProvider
   ]
 })
 export class AppModule {}
