@@ -1,5 +1,6 @@
 export class  CustodioData {
   id:	number	;
+  nombre_responsable:	string	;
   pais:	string	;
   ciudad:	string	;
   direccion:	string	;
@@ -8,14 +9,15 @@ export class  CustodioData {
   compania:	string	;
   telefono:	string	;
   estado:	string	;
-  created_at:	Date	;
-  updated_at:	Date	;
-  nombre_responsable:	string	;
-  area_piso:	string	;
+  fechaCreacion:	Date	;
+  fechaActualizacion:	Date	;
+  fechaEliminacion: Date ;
+  links : any ;
 
 
 
   constructor(id:number,
+              nombre_responsable:string,
               pais:string,
               ciudad:string,
               direccion:string,
@@ -24,10 +26,10 @@ export class  CustodioData {
               compania:string,
               telefono:string,
               estado:string,
-              created_at:Date,
-              updated_at:Date,
-              nombre_responsable:string,
-              area_piso:string) {
+              fechaCreacion:Date,
+              fechaActualizacion:Date,
+              fechaEliminacion:Date,
+              links : any) {
     this.id = id;
     this.pais = pais;
     this.ciudad = ciudad;
@@ -37,11 +39,11 @@ export class  CustodioData {
     this.compania = compania;
     this.telefono = telefono;
     this.estado = estado;
-    this.created_at = created_at;
-    this.updated_at = updated_at;
+    this.fechaCreacion = fechaCreacion;
+    this.fechaActualizacion = fechaActualizacion;
+    this.fechaEliminacion = fechaEliminacion;
     this.nombre_responsable = nombre_responsable;
-    this.area_piso = area_piso;
-
+    this.links = links;
   }
 }
 

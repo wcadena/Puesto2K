@@ -30,7 +30,7 @@ export class UserSisProvider {
   constructor(http: Http,_us:ConnectorProvider) {
                 this.http = http;
                 this._us=_us;
-                this._us.cargar_storage()
+                this._us.cargar_storage('user')
                   .then(()=>{
                     this.currentUser=this._us.currentUser;
                   }).catch((err: any) => {

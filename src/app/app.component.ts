@@ -19,7 +19,7 @@ export class MyApp {
     private _us:ConnectorProvider) {
     platform.ready().then(() => {
       //splashScreen.show();
-       this._us.cargar_storage()
+       this._us.cargar_storage('user')
          .then(()=>{
            if(this._us.currentUser == null){
              this.rootPage = LoginPage;

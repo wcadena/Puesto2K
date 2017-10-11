@@ -31,32 +31,67 @@ export class ConnectorProvider {
     console.log('Hello ConnectorProvider Provider');
   }
 
-  public login_auth_services(credentials) {
-    if (credentials.token_type === null) {
-      return Observable.throw("Please insert credentials");
+  /**
+   * devuelve true
+   * @param credentials
+   * @returns {any}
+   */
+  public login_auth_services(cedula:string) {
+    if (cedula=== null || cedula=== '' ) {
+      return Observable.throw("Por favor insertar Cedula");
     } else {
       return Observable.create(observer => {
         // At this point make a request to your backend to make a real check!
-        this.consultaapi_clave2(credentials.email)
-          .then(
-            () => {
-              if(this.currentUser==null){
-                observer.next(false);
-              }else{
-                observer.next(this.currentUser.token_type);
-              }
-              observer.complete();
-            },
-            () => {
-              console.log("Task Errored![lkjliasdn898a9sdy>0sa0]");
-              observer.next(false);
-              observer.complete();
-            });
-
+        observer.next(true);
+        observer.next(this.currentUser.token_type);
+        observer.complete();
         //this.lanzarweb("http://inventario.ecuatask.com/");
 
       });
     }
+  }
+
+  /**
+   * para solicitar una respuesta desde el json con autenticacion Bearer,
+   * devuelve como un Objeto
+   * para usar :
+   * var cast = ConsultaGet(URL);
+   * cast.then(function(value) {
+   *   console.log(value);
+   * });
+   *
+   * O PUEDE USAR:
+   *
+   * var p1 = Promise.resolve({
+   *   then: function(onFulfill, onReject) { onFulfill('fulfilled!'); }
+   * });
+   * p1.then(function(v) {
+   *     console.log(v); // "fulfilled!"
+   *   }, function(e) {
+   *     // not called
+   * });
+   *
+   * @param url poner url mas datos con ?dato=datp&dato2=dato2&dat3=dat3
+   * @returns {Promise<T>}
+   * @constructor
+   */
+  public ConsultaGet(url:string){
+    let promesa= new Promise((resolve,reject ) =>{
+      //let url_tok =URL_TOKEN;
+      let url_tok = url;
+      this.http.get(url_tok,{ headers: {
+        Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImNmMzZjMmI1ZTcxODQxZTE1MDVkOTVjMzk5NGJhYzhkNTM4YTc5YjU0YmJiYWM5NGM4M2M2ZWRmOTkwZDZkYzdmZDY4NDQ5ZmJkOWU4NDhjIn0.eyJhdWQiOiI0IiwianRpIjoiY2YzNmMyYjVlNzE4NDFlMTUwNWQ5NWMzOTk0YmFjOGQ1MzhhNzliNTRiYmJhYzk0YzgzYzZlZGY5OTBkNmRjN2ZkNjg0NDlmYmQ5ZTg0OGMiLCJpYXQiOjE1MDczMjgwNDksIm5iZiI6MTUwNzMyODA0OSwiZXhwIjoxNTM4ODY0MDQ5LCJzdWIiOiIyMyIsInNjb3BlcyI6W119.WxrR7JcdhZOljvi3C8-dvoE7uZBQzDKxTEbtEcCX-X4J6CD-yNPGwoyWtrihyxJ79RxmM580AwVI8f5bl9iWlvDUKzF5WQEdi3140XPnnvgqKJpfClUAT5LtgGfeDdL_wl1idbfaRRamsNhYu04Un0ZnrkH96GZASWgDR79X7LAzoam1its72Rr4Bh7XF7cK8MiW2pDrXxRoyiT2NLyMSi4ubunbxfwXRpRQDrsP8vj8EvUlPuXyHhxVureMFkXj65IXXE-YizusVjmBcIGtvyUoOQD5y0ioj36S1cNB4ugkbSQfTCWfVUDjkPfIHn-ewr59BhsQZKcHM9tI4eakpgqgZginMaN7vpYt8T7s0TSeaxGdTQux59hUQK6MHk8LyK4PfXEbeKHeKETm0Y2LwgG8y4atQi68P_zPrcw2tzhMRaJdCXsDVSqjCuNbVJ_1YG47fn_5IpvaWouVDsvOnfYpNjkI98RhKy_UQX1fI2fSMIrsyBO-HcT3bBnIA1pqjXpRLt19UXmHrPwQqZ30geyGtedtXzMUlUxHSDgqOBCOFFc3c1ve1OAUzKvwov5DC8SNfkiCkiYvM59cDu6A_ccliG-2y8ZPsy730Z3JfFK1Y10UwxHlERaf-Lf1NJyEiOK0e0lxOSlX74U67XRn53oblkCIZa1H_bdhdex32iU' } })
+        .subscribe(res => {
+          this.data = res.json();
+          resolve(this.data);
+        }, error => {
+          this.presentToast(error);
+          this.ErrorToast( JSON.stringify(error)+"");
+          console.error(error);
+          reject(error);
+        });
+    });
+    return promesa;
   }
 
   public register(credentials) {
@@ -94,7 +129,6 @@ export class ConnectorProvider {
         resolve();
       }else{
         //esta en la computadora
-
         if(this.currentUser){
           localStorage.setItem('user.token_type',this.currentUser.token_type);
           resolve();
@@ -107,25 +141,86 @@ export class ConnectorProvider {
     return promesa;
   }
 
-  /***
-   * carga los datos de memoria listo para ver si es usuario valido o se debe logear
-   * @returns {Promise<TResult|T>}
+  /**
+   * para guardar en storage de la maquina
+   * @param tipo
+   * @param dato
+   * @returns {Promise<T>}
    */
-  public cargar_storage(){
+  public guardar_en_storage(tipo:string,dato:any){
+    let promesa= new Promise((resolve,reject ) =>{
+      if(this.platform.is("cordova")){
+        //es un dispositivo
+        this.storage.set(tipo,dato);
+        resolve();
+      }else{
+        //esta en la computadora
+        if(this.currentUser){
+          localStorage.setItem(tipo,dato);
+          resolve();
+        }else{
+          localStorage.removeItem(tipo);
+          resolve();
+        }
+      }
+    });
+    return promesa;
+  }
+
+  /**
+   * cargar del storage los datos guardados
+   * @param tipo
+   * @returns {Promise<T>}
+   */
+  public cargar_del_storage(tipo:string){
     let promesa= new Promise((resolve,reject ) =>{
       if(this.platform.is("cordova")){
         //es un dispositivo
         this.storage.ready()
           .then( () =>{
-            this.storage.get('user').then((val) => {
-              this.currentUser = val;
-              resolve(this.currentUser);
-            });
+              this.storage.get(tipo).then((val) => {
+                this.currentUser = val;
+                resolve(this.currentUser);
+              });
           });
       }else{
         //esta en la computadora
-        this.currentUser = new UserData(localStorage.getItem('user.token_type'));
-        resolve(this.currentUser);
+         resolve(localStorage.getItem(tipo));
+      }
+    }).catch((err: any) => {
+      this.ErrorToast(err);
+      console.error(err);
+    });
+    return promesa;
+  }
+
+  /***
+   * carga los datos de memoria listo para ver si es usuario valido o se debe logear
+   * @returns {Promise<TResult|T>}
+   */
+  public cargar_storage(tipo:string){
+    let promesa= new Promise((resolve,reject ) =>{
+      if(this.platform.is("cordova")){
+        //es un dispositivo
+        this.storage.ready()
+          .then( () =>{
+            if(tipo=='user'){
+              this.storage.get('user').then((val) => {
+                this.currentUser = val;
+                resolve(this.currentUser);
+              });
+            }else{
+              resolve(null);
+            }
+          });
+      }else{
+        //esta en la computadora
+        if(tipo=='user') {
+          this.currentUser = new UserData(localStorage.getItem('user.token_type'));
+          resolve(this.currentUser);
+        }else{
+          resolve(null);
+        }
       }
     }).catch((err: any) => {
       this.presentToast(err);
@@ -138,49 +233,7 @@ export class ConnectorProvider {
    */
 
 
-  /**
-   * consulta el token de transaccion y lo pone en la variable global this.currentUser
-   * la informacion lo toma del servicio que se configura el config, es un dato asincronico
-   * @param username
-   * @param password
-   * @returns {Promise<T>}
-   */
-  public consultaapi_clave2(username:string){
 
-    let promesa= new Promise((resolve,reject ) =>{
-
-      let url_tok =URL_TOKEN;
-      ///////////////////////////////////////////////////////////////
-      let data = new URLSearchParams();
-      data.append("grant_type", GRANT_TYPE );
-      data.append("client_id", CLIENT_ID );
-      data.append("client_secret", CLIENT_SECRET );
-
-
-
-      /////////////////////////////////////////////////////////////
-      //let url_tok = "http://inventario.ecuatask.com/api/users";
-      this.http.post(url_tok,data)
-        .subscribe(res => {
-          this.data = res.json();
-          if(this.data.error){
-            console.log("Error:["+this.data.error+"] - "+this.data.message)
-            console.log(this.data);
-            this.currentUser = null;
-            resolve();
-          }else{
-            this.currentUser = new UserData(this.data.token_type);
-            resolve();
-          }
-
-        }, error => {
-          console.log("Error codigos [asdojsad92#wwdpkj111]")
-          console.log(error);
-          resolve();
-        });
-    });
-    return promesa;
-  }
 
   /**
    * ejemplo de consulta, no se usa en lugar alguno por el momento
@@ -224,6 +277,19 @@ export class ConnectorProvider {
       message: mensaje,
       duration: 3000,
       position: 'top'
+    });
+
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+
+    toast.present();
+  }
+  ErrorToast(mensaje:string) {
+    let toast = this.toastCtrl.create({
+      message: mensaje,
+      duration: 9000,
+      position: 'middle'
     });
 
     toast.onDidDismiss(() => {
