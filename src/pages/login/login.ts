@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import {AlertController, IonicPage, Loading, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {UserData} from "../../models/user.model";
 import { ConnectorProvider } from "../../providers/connector/connector";
-import {HomePage} from "../home/home";
+
+import {IngresoPage} from "../ingreso/ingreso";
 
 /**
  * Generated class for the LoginPage page.
@@ -18,15 +19,20 @@ import {HomePage} from "../home/home";
 export class LoginPage {
 
   homepage:any;
-  usu_aux: UserData;
+  public currentUser: UserData;
   loading: Loading;
-  registerCredentials = { email: '', password: '' };
+  registerCredentials = { cedula: '1718097080' };
 
 
-  constructor(private nav: NavController, private auth: ConnectorProvider,
-              private alertCtrl: AlertController, private loadingCtrl: LoadingController) {
+  constructor(
+    private nav: NavController,
+    private auth: ConnectorProvider,
+    private alertCtrl: AlertController,
+    private loadingCtrl: LoadingController,
+    private _con:ConnectorProvider
+  ) {
     //declara la pagina a dondedebe ir
-    this.homepage =HomePage;
+    this.homepage =IngresoPage;
 
   }
 
@@ -39,25 +45,21 @@ export class LoginPage {
    * evento de login desde la form
    */
   public login() {
-    this.showLoading()
-    /*this.auth.login_auth_services(this.registerCredentials).subscribe(allowed => {
-        if (allowed) {//si esta bien ingresa
-         /* this.auth.consultaapi_clave2(this.registerCredentials.email,this.registerCredentials.password)
-            .then(
-              () => {
-                this.usu_aux =this.auth.currentUser;
-                console.log(this.usu_aux);
-                this.auth.guardar_storage();
-                this.nav.setRoot(this.homepage);
-              });* /
+    this.showLoading();
+    var conecta = this._con.ConsultaGet('http://inventario3.aerogal.dev/api/custodiosCedula?documentoIdentificacion=' + this.registerCredentials.cedula);
 
-        } else {
-          this.showError("Aceso Denegado");
-        }
-      },
-      error => {
-        this.showError(error);
-      });*/
+    conecta.then((value) => {
+
+      this.currentUser = new UserData(localStorage.getItem(this.registerCredentials.cedula));
+      this._con.currentUser = new UserData(localStorage.getItem(this.registerCredentials.cedula));
+      this._con.guardar_storage(this.registerCredentials.cedula);
+      this.nav.setRoot(this.homepage);
+    }).catch((err) => {
+      console.error(err);
+      this.showError(err);
+    });
+
+
   }
 
   /**

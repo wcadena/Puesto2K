@@ -7,6 +7,7 @@ import { Storage } from '@ionic/storage';
 import 'rxjs/add/operator/map';
 import { CLIENT_ID,CLIENT_SECRET,GRANT_TYPE,URL_TOKEN,AUTHORIZATION_BEARER } from '../../config/url.servicios';
 import {UserData} from "../../models/user.model";
+import {LoginPage} from "../../pages/login/login";
 
 /*
   Generated class for the ConnectorProvider provider.
@@ -121,16 +122,16 @@ export class ConnectorProvider {
    * guarda los datos en el storage del dispositivo o en el computador para realizar pruebas, es asincrono
    * @returns {Promise<T>}
    */
-  public guardar_storage(){
+  public guardar_storage(cedula:string){
     let promesa= new Promise((resolve,reject ) =>{
       if(this.platform.is("cordova")){
         //es un dispositivo
-        this.storage.set('user', this.currentUser);
+        this.storage.set('user', cedula);
         resolve();
       }else{
         //esta en la computadora
         if(this.currentUser){
-          localStorage.setItem('user.token_type',this.currentUser.token_type);
+          localStorage.setItem('user.token_type',cedula);
           resolve();
         }else{
           localStorage.removeItem('user.token_type');
@@ -248,7 +249,7 @@ export class ConnectorProvider {
         .subscribe(res => {
           this.data = res.json();
           console.log(this.data);
-          this.guardar_storage()
+          //this.guardar_storage()
         }, error => {
           this.presentToast(error);
         });
@@ -261,11 +262,8 @@ export class ConnectorProvider {
    * @returns {any}
    */
   public logout() {
-    return Observable.create(observer => {
-      this.currentUser = null;
-      observer.next(true);
-      observer.complete();
-    });
+    this.currentUser =null;
+    this.guardar_storage(null);
   }
 
   /**

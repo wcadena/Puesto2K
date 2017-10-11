@@ -5,6 +5,7 @@ import { Platform } from 'ionic-angular';
 import { PuestoProvider } from "../../providers/puesto/puesto";
 import { ConnectorProvider } from "../../providers/connector/connector";
 import {CustodioData} from "../../models/custodios.model";
+import {LoginPage} from "../login/login";
 /**
  * Generated class for the IngresoPage page.
  *
@@ -62,6 +63,7 @@ export class IngresoPage {
 
     var dataReco = this._con.cargar_del_storage('CustodioData');
     console.log(dataReco);*/
+    this.navCtrl.setRoot(LoginPage);
     this._con.logout();
   }
 
