@@ -5,7 +5,7 @@ import { ToastController , Platform} from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { Storage } from '@ionic/storage';
 import 'rxjs/add/operator/map';
-import { CLIENT_ID,CLIENT_SECRET,GRANT_TYPE,URL_TOKEN,AUTHORIZATION_BEARER } from '../../config/url.servicios';
+import { AUTHORIZATION_BEARER } from '../../config/url.servicios';
 import {UserData} from "../../models/user.model";
 import {LoginPage} from "../../pages/login/login";
 
@@ -66,11 +66,19 @@ export class ConnectorProvider {
    * var p1 = Promise.resolve({
    *   then: function(onFulfill, onReject) { onFulfill('fulfilled!'); }
    * });
-   * p1.then(function(v) {
+   * p1.then((v) => {
    *     console.log(v); // "fulfilled!"
    *   }, function(e) {
    *     // not called
    * });
+   * o usar
+   *  var conecta = this._con.ConsultaGet(URL);
+   *    conecta.then((value) => {
+   *  this.nav.setRoot(this.homepage);
+   *  }).catch((err) => {
+   *       console.error(err);
+   *       this.showError(err);
+   *  });
    *
    * @param url poner url mas datos con ?dato=datp&dato2=dato2&dat3=dat3
    * @returns {Promise<T>}
@@ -157,7 +165,7 @@ export class ConnectorProvider {
       }else{
         //esta en la computadora
         if(this.currentUser){
-          localStorage.setItem(tipo,dato);
+          localStorage.setItem(tipo, JSON.stringify(dato));
           resolve();
         }else{
           localStorage.removeItem(tipo);
@@ -173,7 +181,7 @@ export class ConnectorProvider {
    * @param tipo
    * @returns {Promise<T>}
    */
-  public cargar_del_storage(tipo:string){
+  public cargar_del_storage_objeto(tipo:string){
     let promesa= new Promise((resolve,reject ) =>{
       if(this.platform.is("cordova")){
         //es un dispositivo
@@ -186,7 +194,8 @@ export class ConnectorProvider {
           });
       }else{
         //esta en la computadora
-         resolve(localStorage.getItem(tipo));
+         //resolve(localStorage.getItem(tipo));
+        resolve( JSON.parse(localStorage.getItem(tipo)));
       }
     }).catch((err: any) => {
       this.ErrorToast(err);

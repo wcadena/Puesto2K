@@ -24,23 +24,6 @@ export class MyApp {
            if(this._us.currentUser == null){
              this.rootPage = LoginPage;
            }else if(this._us.currentUser.token_type != null){
-             //this._us_srv.currentUser= this._us.currentUser;
-             console.log("dato a cargar");
-             /*this._us_srv.load()
-             .then(()=>{
-               console.log("/////////////////////////////////////////////////////");
-               console.log(this._us_srv.data);
-             });/*** /
-
-             this._us_srv.loadUser(this._us.currentUser.email)
-             .then(()=>{
-               console.log("=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>");
-               console.log(this._us_srv.data);
-             });
-             /**/
-
-             //this.logUser=this._us.currentUser;
-             //this.presentToast("Bienvenido: "+this._us.currentUser.email);
              this.presentToast("Bienvenido: Wagner Cadena");
              this.rootPage = IngresoPage;
            }else{

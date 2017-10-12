@@ -20,11 +20,12 @@
 
 
 <ion-content padding="true" class="has-header">
+  <h1>Bienvenido {{custodio.nombre_responsable}}</h1>
   <form id="ingreso-form1" class="list">
     <ion-list>
 
         <ion-item>
-      <ion-input  type="text" placeholder="Cedula" name="documentoIdentificacion" [(ngModel)]="registerCredentials.documentoIdentificacion" required ></ion-input>
+      <ion-input  type="text" placeholder="Cedula" name="documentoIdentificacion" [(ngModel)]="registerCredentials.documentoIdentificacion" required  readonly ></ion-input>
     </ion-item>
 
       <ion-item>
@@ -39,5 +40,5 @@
     </ion-item>
 </ion-list>
   </form>
-  <h1>Bienvenido, el puesto elegido es:</h1>
+
 </ion-content>

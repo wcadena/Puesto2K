@@ -45,5 +45,21 @@ export class  CustodioData {
     this.nombre_responsable = nombre_responsable;
     this.links = links;
   }
+  /*public ParseCustodioData(data:any){
+    return CustodioData(data.data.id,
+      nombre_responsable:string,
+      pais:string,
+      ciudad:string,
+      direccion:string,
+      documentoIdentificacion:string,
+      cargo:string,
+      compania:string,
+      telefono:string,
+      estado:string,
+      fechaCreacion:Date,
+      fechaActualizacion:Date,
+      fechaEliminacion:Date,
+      links : any);
+  }*/
 }
 

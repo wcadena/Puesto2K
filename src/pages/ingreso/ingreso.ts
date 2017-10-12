@@ -21,6 +21,7 @@ import {LoginPage} from "../login/login";
 export class IngresoPage {
 
   registerCredentials = { documentoIdentificacion: '', codigo: '' };
+  custodio : CustodioData;
   public data:any;
   constructor(
     platform: Platform,
@@ -30,6 +31,14 @@ export class IngresoPage {
     private _ps:PuestoProvider,
     private _con:ConnectorProvider
             ) {
+    var data = this._con.cargar_del_storage_objeto('CustodioData');
+    data.then((value) => {
+      console.log(value);
+      this.custodio = value['data'];
+      this.registerCredentials.documentoIdentificacion = this.custodio.documentoIdentificacion;
+    });
+
+
   }
 
   ionViewDidLoad() {

@@ -4,6 +4,7 @@ import {UserData} from "../../models/user.model";
 import { ConnectorProvider } from "../../providers/connector/connector";
 
 import {IngresoPage} from "../ingreso/ingreso";
+import {CustodioData} from "../../models/custodios.model";
 
 /**
  * Generated class for the LoginPage page.
@@ -53,6 +54,9 @@ export class LoginPage {
       this.currentUser = new UserData(localStorage.getItem(this.registerCredentials.cedula));
       this._con.currentUser = new UserData(localStorage.getItem(this.registerCredentials.cedula));
       this._con.guardar_storage(this.registerCredentials.cedula);
+      var usuario_sistema : CustodioData;
+      usuario_sistema = value['data'];
+      this._con.guardar_en_storage('CustodioData',value);
       this.nav.setRoot(this.homepage);
     }).catch((err) => {
       console.error(err);
