@@ -6,6 +6,8 @@ import { ConnectorProvider } from "../../providers/connector/connector";
 import {IngresoPage} from "../ingreso/ingreso";
 import {CustodioData} from "../../models/custodios.model";
 
+import { URL_SERVICIOS_PROD, DEBUG } from '../../config/url.servicios';
+
 /**
  * Generated class for the LoginPage page.
  *
@@ -47,7 +49,7 @@ export class LoginPage {
    */
   public login() {
     this.showLoading();
-    var conecta = this._con.ConsultaGet('http://inventario3.aerogal.dev/api/custodiosCedula?documentoIdentificacion=' + this.registerCredentials.cedula);
+    var conecta = this._con.ConsultaGet(URL_SERVICIOS_PROD + 'api/custodiosCedula?documentoIdentificacion=' + this.registerCredentials.cedula);
 
     conecta.then((value) => {
 

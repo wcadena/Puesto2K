@@ -5,7 +5,7 @@ import { ToastController , Platform} from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { Storage } from '@ionic/storage';
 import 'rxjs/add/operator/map';
-import { AUTHORIZATION_BEARER } from '../../config/url.servicios';
+import { AUTHORIZATION_BEARER, URL_SERVICIOS_PROD, DEBUG } from '../../config/url.servicios';
 import {UserData} from "../../models/user.model";
 import {LoginPage} from "../../pages/login/login";
 
@@ -89,7 +89,7 @@ export class ConnectorProvider {
       //let url_tok =URL_TOKEN;
       let url_tok = url;
       this.http.get(url_tok,{ headers: {
-        Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImNmMzZjMmI1ZTcxODQxZTE1MDVkOTVjMzk5NGJhYzhkNTM4YTc5YjU0YmJiYWM5NGM4M2M2ZWRmOTkwZDZkYzdmZDY4NDQ5ZmJkOWU4NDhjIn0.eyJhdWQiOiI0IiwianRpIjoiY2YzNmMyYjVlNzE4NDFlMTUwNWQ5NWMzOTk0YmFjOGQ1MzhhNzliNTRiYmJhYzk0YzgzYzZlZGY5OTBkNmRjN2ZkNjg0NDlmYmQ5ZTg0OGMiLCJpYXQiOjE1MDczMjgwNDksIm5iZiI6MTUwNzMyODA0OSwiZXhwIjoxNTM4ODY0MDQ5LCJzdWIiOiIyMyIsInNjb3BlcyI6W119.WxrR7JcdhZOljvi3C8-dvoE7uZBQzDKxTEbtEcCX-X4J6CD-yNPGwoyWtrihyxJ79RxmM580AwVI8f5bl9iWlvDUKzF5WQEdi3140XPnnvgqKJpfClUAT5LtgGfeDdL_wl1idbfaRRamsNhYu04Un0ZnrkH96GZASWgDR79X7LAzoam1its72Rr4Bh7XF7cK8MiW2pDrXxRoyiT2NLyMSi4ubunbxfwXRpRQDrsP8vj8EvUlPuXyHhxVureMFkXj65IXXE-YizusVjmBcIGtvyUoOQD5y0ioj36S1cNB4ugkbSQfTCWfVUDjkPfIHn-ewr59BhsQZKcHM9tI4eakpgqgZginMaN7vpYt8T7s0TSeaxGdTQux59hUQK6MHk8LyK4PfXEbeKHeKETm0Y2LwgG8y4atQi68P_zPrcw2tzhMRaJdCXsDVSqjCuNbVJ_1YG47fn_5IpvaWouVDsvOnfYpNjkI98RhKy_UQX1fI2fSMIrsyBO-HcT3bBnIA1pqjXpRLt19UXmHrPwQqZ30geyGtedtXzMUlUxHSDgqOBCOFFc3c1ve1OAUzKvwov5DC8SNfkiCkiYvM59cDu6A_ccliG-2y8ZPsy730Z3JfFK1Y10UwxHlERaf-Lf1NJyEiOK0e0lxOSlX74U67XRn53oblkCIZa1H_bdhdex32iU' } })
+        Authorization: 'Bearer ' + AUTHORIZATION_BEARER } })
         .subscribe(res => {
           this.data = res.json();
           resolve(this.data);
@@ -253,8 +253,8 @@ export class ConnectorProvider {
     console.log("Consulta api login");
     let promesa= new Promise((resolve,reject ) =>{
       //let url_tok =URL_TOKEN;
-      let url_tok = "http://inventario.ecuatask.com/api/users";
-      this.http.get(url_tok,{ headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImIxZjE2MjVlMzBjNzBjODI2MzQ2ZjllOTNiYmU2YTMxOTZhYTEyN2E3Mjg2N2M4MmIyN2Y0NzQzODNhN2QyMzdkMGI5OGI5NTJhMTI5ZWU0In0.eyJhdWQiOiI3IiwianRpIjoiYjFmMTYyNWUzMGM3MGM4MjYzNDZmOWU5M2JiZTZhMzE5NmFhMTI3YTcyODY3YzgyYjI3ZjQ3NDM4M2E3ZDIzN2QwYjk4Yjk1MmExMjllZTQiLCJpYXQiOjE1MDEwMDU2NzAsIm5iZiI6MTUwMTAwNTY3MCwiZXhwIjoxNTEzOTY1NjY5LCJzdWIiOiIiLCJzY29wZXMiOltdfQ.AkZpBnUX7XaCNsrp8I1U8lhWCaDFWt7XdRdVws1eVVqk8kEQkGryXJb_1brn9qzfNKqG3qZ3HyGVCj1NOru3mSUMq7CngRZnukCEO2_YZfHVXaWFgovK0p3rY47PrxrF8mXME6r3I7QxEFvogT5q20sJi-gQIoJ0SyOi97vq__viV3StcEQ66DYrxpf3zw-VY4uNi_zwmN9mbWCdi1cTSIcdTmBescjQBtl96vekki-oGvYDODlo83HTyDScyDfGeK95Awksfh7KmAi69sjAKyPeXpgXBOMjYx0iJ8mkbcdyS6Wq0_oEDLwRhGeHUaSQLUU4cyraYvO3nwobzQ3PWZxPriTnY7p_xOVxJTE1oMYuf336t3UrOtRaNtshQ45BBgHGksWHKBbyVEJHzg82FQ6e5feu-tfS1ISl4ft3NhE3_QkYESZwuRI9sPevBwDMFgrChudqUaV6iFxPnBTfuKbHbnm3sbTgDE59VCo4_iQi04wMCQxIV_5hIAYLmgpujp7lmZzUNezUibodfJcGSm-47O71qX7PzusW2JsBTT_MJBz3qBZJt_hpAh3qhO0nzrjBo0gGIQiF5JGTRZhYiixnAS0c08DDCGVix97A_28s-E-gaVMWM_GpzJaMvHmaTRjtO4S4tFooiE2tFTMw_f969DBxTQlnkMvjgwp1EU0' } })
+      let url_tok = URL_SERVICIOS_PROD + "api/users";
+      this.http.get(url_tok,{ headers: { Authorization: 'Bearer ' + AUTHORIZATION_BEARER } })
         .subscribe(res => {
           this.data = res.json();
           console.log(this.data);

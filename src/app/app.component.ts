@@ -24,7 +24,7 @@ export class MyApp {
            if(this._us.currentUser == null){
              this.rootPage = LoginPage;
            }else if(this._us.currentUser.token_type != null){
-             this.presentToast("Bienvenido: Wagner Cadena");
+             this.presentToast("Bienvenido Usuario "+this._us.currentUser.token_type);
              this.rootPage = IngresoPage;
            }else{
              this.rootPage = LoginPage;
