@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import {AlertController, IonicPage, Loading, LoadingController, NavController, NavParams} from 'ionic-angular';
+import {AlertController,  Loading, LoadingController, NavController} from 'ionic-angular';
 import {UserData} from "../../models/user.model";
 import { ConnectorProvider } from "../../providers/connector/connector";
 
 import {IngresoPage} from "../ingreso/ingreso";
 import {CustodioData} from "../../models/custodios.model";
 
-import { URL_SERVICIOS_PROD, DEBUG } from '../../config/url.servicios';
+import { URL_SERVICIOS_PROD } from '../../config/url.servicios';
 
 /**
  * Generated class for the LoginPage page.
@@ -29,7 +29,7 @@ export class LoginPage {
 
   constructor(
     private nav: NavController,
-    private auth: ConnectorProvider,
+
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
     private _con:ConnectorProvider
@@ -56,11 +56,9 @@ export class LoginPage {
       this.currentUser = new UserData(localStorage.getItem(this.registerCredentials.cedula));
       this._con.currentUser = new UserData(localStorage.getItem(this.registerCredentials.cedula));
       this._con.guardar_storage(this.registerCredentials.cedula);
-      var usuario_sistema : CustodioData;
-      usuario_sistema = value['data'];
       this._con.guardar_en_storage('CustodioData',value);
       this.nav.setRoot(this.homepage);
-    }).catch((err) => {
+     }).catch((err) => {
       console.error(err);
       this.showError(err);
     });

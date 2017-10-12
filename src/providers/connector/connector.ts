@@ -5,9 +5,9 @@ import { ToastController , Platform} from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { Storage } from '@ionic/storage';
 import 'rxjs/add/operator/map';
-import { AUTHORIZATION_BEARER, URL_SERVICIOS_PROD, DEBUG } from '../../config/url.servicios';
+import { AUTHORIZATION_BEARER, URL_SERVICIOS_PROD } from '../../config/url.servicios';
 import {UserData} from "../../models/user.model";
-import {LoginPage} from "../../pages/login/login";
+
 
 /*
   Generated class for the ConnectorProvider provider.

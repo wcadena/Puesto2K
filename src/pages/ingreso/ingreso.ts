@@ -20,7 +20,7 @@ import {LoginPage} from "../login/login";
 })
 export class IngresoPage {
 
-  registerCredentials = { documentoIdentificacion: '', codigo: '' };
+  registerCredentials = { documentoIdentificacion: '', codigo: '', nombre : '' };
   custodio : CustodioData;
   public data:any;
   constructor(
@@ -33,9 +33,10 @@ export class IngresoPage {
             ) {
     var data = this._con.cargar_del_storage_objeto('CustodioData');
     data.then((value) => {
-      console.log(value);
+      //console.log(value);
       this.custodio = value['data'];
       this.registerCredentials.documentoIdentificacion = this.custodio.documentoIdentificacion;
+      this.registerCredentials.nombre = this.custodio.nombre_responsable;
     });
 
 
