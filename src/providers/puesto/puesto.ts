@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
-import {URL_SERVICIOS} from "../../config/url.servicios";
+import {ConnectorProvider} from "../connector/connector";
 
 /*
   Generated class for the PuestoProvider provider.
@@ -12,17 +12,9 @@ import {URL_SERVICIOS} from "../../config/url.servicios";
 @Injectable()
 export class PuestoProvider {
 
-  constructor(public http: Http) {
-    console.log('Hello PuestoProvider Provider');
-  }
-  public enviar_datos(cedula:String,codigo:String, horas:number){
-      let url = URL_SERVICIOS + "api/puesto_asigna?documentoIdentificacion="+cedula+"&codigo="+codigo+"&horas="+horas;
-      this.http.get(url)
-        .map(resp => resp.json())
-        .subscribe( data =>{
-            console.log(data);
-        });
-
+  constructor(public http: Http,
+  private _con:ConnectorProvider) {
+    this._con.presentToast('Hello PuestoProvider Provider');
   }
 
 }

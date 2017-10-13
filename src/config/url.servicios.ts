@@ -1,14 +1,6 @@
 /**
  * Created by wcadena on 25/8/2017.
  */
-export const URL_SERVICIOS = "http://inventario.aerogal.info/";
-
-export const CLIENT_ID = "3";
-export const CLIENT_SECRET = 'R2ATGMWecSXtKF57sCJh0IvR5MvIdd4YVgNEO1D3';//"RvbuZ6DA0Rn6QebOvkPgYynrl8JGYOqJHWiLl80M";
-export const GRANT_TYPE = "password";
-
-export const URL_TOKEN = 'http://inventario.ecuatask.com/oauth/token';//"http://inventario.ecuatask.com/api/oauth/token";
-
 export const AUTHORIZATION_BEARER = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImFlN2M1YjI0NWNkNjhmZDE0ZTY4ZDM0YTFjYjg4MjEzZDY0NzU3YzQzMzNmYTBkMGRiNjFhYzk2Njg4OTA0ZTU5ZDhjYjVkZWUwMmNlN2U2In0.eyJhdWQiOiIxIiwianRpIjoiYWU3YzViMjQ1Y2Q2OGZkMTRlNjhkMzRhMWNiODgyMTNkNjQ3NTdjNDMzM2ZhMGQwZGI2MWFjOTY2ODg5MDRlNTlkOGNiNWRlZTAyY2U3ZTYiLCJpYXQiOjE1MDc4MTk2MTEsIm5iZiI6MTUwNzgxOTYxMSwiZXhwIjoxNTM5MzU1NjExLCJzdWIiOiIyMyIsInNjb3BlcyI6W119.PHSQK-F2UkuyVu2PS6JVy58my_br-wsS6ujwVHn9sDv9T9U40-6osC-oZl8ddBZ-UTPT6exB4lzcEvJP8qcE_R1Gw2YM0xU61hz_zubq_lxvOH3NbZTJnjIUCOkmGprLc3VzuU24bQPA0QyeP7sxx2v3sQ6EN1P2VgDT64uK949sbAJ8xJ1L7IIL0FVXnWxI9MAzVdDqSF0ICMRLzG78ZhKu1mUQAnAG0FKgfvxIiFeVn6AvM3FuGnl1z87Ge1VtnYr3F-qWXHMiTU0CDiYo7_4DDPcTmSXHZEa7S5wiSi8-OtjoO9A6HHfD7nuAv3s8bLnMB-5rMiasZp0ho_Hx5lcpCjXg-FTB5KK369S_kcD8dBt1hC9f_kqHI_i7PqCepDuYpmfIU-fTbjDyG13DWDVwjg0fxdK5dtDzSeDajMRIgGxBh5WO_egb5nB-BU-tyCaUuq-FJK64349LfQWxbItib-9r05cu0Sbb6hhdlHi8EO0_1yYzvglZL65qNA9pG_NtB6QV7uHON792OEk2bost2MOMOG50mjjk7YXn5Xxq1Amnet00gLM_i3c7h5XxsvMO5kfwcUHojdx5j9-aCECe-2qvZ-iaPxwJO69ycEIImOmFd8RKrOIydJ-OA9vtaDmY9Q9QGImAfJZn21un_dBOM0bdLqK1WbVJQQFHSLY";
 export const URL_SERVICIOS_PROD = "http://inventario.ecuatask.com/";
 export const DEBUG = true;

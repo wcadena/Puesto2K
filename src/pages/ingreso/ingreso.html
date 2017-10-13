@@ -21,7 +21,7 @@
 
 <ion-content padding="true" class="has-header">
   <h1>Bienvenido {{registerCredentials.nombre}}</h1>
-  <form id="ingreso-form1" class="list">
+  <form id="ingreso-form1" class="list" (ngSubmit)="enviarPuesto()" #registerForm="ngForm" >
     <ion-list>
 
         <ion-item>
@@ -29,15 +29,18 @@
     </ion-item>
 
       <ion-item>
-      <ion-input type="text" placeholder="Codigo" name="codigo" [(ngModel)]="registerCredentials.codigo" required ></ion-input>
+      <ion-input type="text" placeholder="Codigo" name="codigo" [(ngModel)]="registerCredentials.codigo" required readonly ></ion-input>
     </ion-item>
     <ion-item>
       <button id="ingreso-button2" ion-button block large (click)='scanner()' >Scanner</button>
 
     </ion-item>
-    <ion-item>
-      <button id="ingreso-button1" ion-button block large (click)='enviaEvento()'>Ingreso</button>
+    <ion-item *ngIf="!registerCredentials.salida" >
+      <button id="ingreso-button1" ion-button block large (click)='enviaEvento()' [disabled]="!registerForm.form.valid" >Ingreso</button>
     </ion-item>
+      <ion-item *ngIf="registerCredentials.salida">
+        <button id="ingreso-button3" ion-button block large (click)='enviaEventoSalida()' [disabled]="!registerCredentials.salida" >Salida</button>
+      </ion-item>
 </ion-list>
   </form>
 

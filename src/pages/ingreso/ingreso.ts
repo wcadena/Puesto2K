@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import {  NavController, NavParams } from 'ionic-angular';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { Platform } from 'ionic-angular';
-import { PuestoProvider } from "../../providers/puesto/puesto";
 import { ConnectorProvider } from "../../providers/connector/connector";
 import {CustodioData} from "../../models/custodios.model";
 import {LoginPage} from "../login/login";
+import {URL_SERVICIOS_PROD} from "../../config/url.servicios";
 /**
  * Generated class for the IngresoPage page.
  *
@@ -20,7 +20,7 @@ import {LoginPage} from "../login/login";
 })
 export class IngresoPage {
 
-  registerCredentials = { documentoIdentificacion: '', codigo: '', nombre : '' };
+  registerCredentials = { documentoIdentificacion: '', codigo: 'asd1', nombre : '' , salida: false};
   custodio : CustodioData;
   public data:any;
   constructor(
@@ -28,7 +28,6 @@ export class IngresoPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private barcodeScanner: BarcodeScanner,
-    private _ps:PuestoProvider,
     private _con:ConnectorProvider
             ) {
     var data = this._con.cargar_del_storage_objeto('CustodioData');
@@ -49,7 +48,33 @@ export class IngresoPage {
     console.log('enviaEvento');
     console.log(this.registerCredentials.documentoIdentificacion);
     console.log(this.registerCredentials.codigo);
-    this._ps.enviar_datos(this.registerCredentials.documentoIdentificacion,this.registerCredentials.codigo,6);
+
+    let url = URL_SERVICIOS_PROD + "api/puesto_asigna?documentoIdentificacion="+this.registerCredentials.documentoIdentificacion+
+      "&codigo="+this.registerCredentials.codigo+"&horas="+8;
+    var conecta = this._con.ConsultaGet(url);
+    conecta.then((value) => {
+      console.log(value);
+      this._con.presentToast("Puesto Asignado, su turno termina a las: "+value['data']['fecha_fin']);
+      this.registerCredentials.salida = true;
+    }).catch((err) => {
+      console.error(err);
+      this._con.ErrorToast(err);
+    });
+
+  }
+  enviaEventoSalida(){
+
+    let url = URL_SERVICIOS_PROD + "api/puesto_liberar?documentoIdentificacion="+this.registerCredentials.documentoIdentificacion+
+      "&codigo="+this.registerCredentials.codigo;
+    var conecta = this._con.ConsultaGet(url);
+    conecta.then((value) => {
+      console.log(value);
+      this._con.presentToast("Puesto Liberado, "+value['data']);
+      this.registerCredentials.salida = false;
+    }).catch((err) => {
+      console.error(err);
+      this._con.ErrorToast(err);
+    });
   }
   scanner() {
     console.log('scanner');
@@ -62,19 +87,11 @@ export class IngresoPage {
      });
   }
   salir(){
-    /* this.data = this._con.ConsultaGet("http://inventario3.aerogal.dev/api/custodiosCedula?documentoIdentificacion=1718097080");
-    var usuario_sistema : CustodioData;
-    this.data.then((value) => {
-      usuario_sistema = value.data;
-      console.log(usuario_sistema);
-
-      //this._con.guardar_en_storage('CustodioData',usuario_sistema);
-    });
-
-    var dataReco = this._con.cargar_del_storage('CustodioData');
-    console.log(dataReco);*/
     this.navCtrl.setRoot(LoginPage);
     this._con.logout();
+  }
+  enviarPuesto(){
+    console.log("Envia datos");
   }
 
 }

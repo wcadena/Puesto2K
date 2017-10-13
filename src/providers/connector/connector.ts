@@ -5,7 +5,7 @@ import { ToastController , Platform} from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { Storage } from '@ionic/storage';
 import 'rxjs/add/operator/map';
-import { AUTHORIZATION_BEARER, URL_SERVICIOS_PROD } from '../../config/url.servicios';
+import { AUTHORIZATION_BEARER, URL_SERVICIOS_PROD, DEBUG } from '../../config/url.servicios';
 import {UserData} from "../../models/user.model";
 
 
@@ -32,25 +32,7 @@ export class ConnectorProvider {
     console.log('Hello ConnectorProvider Provider');
   }
 
-  /**
-   * devuelve true
-   * @param credentials
-   * @returns {any}
-   */
-  public login_auth_services(cedula:string) {
-    if (cedula=== null || cedula=== '' ) {
-      return Observable.throw("Por favor insertar Cedula");
-    } else {
-      return Observable.create(observer => {
-        // At this point make a request to your backend to make a real check!
-        observer.next(true);
-        observer.next(this.currentUser.token_type);
-        observer.complete();
-        //this.lanzarweb("http://inventario.ecuatask.com/");
 
-      });
-    }
-  }
 
   /**
    * para solicitar una respuesta desde el json con autenticacion Bearer,
@@ -103,17 +85,6 @@ export class ConnectorProvider {
     return promesa;
   }
 
-  public register(credentials) {
-    if (credentials.email === null || credentials.password === null) {
-      return Observable.throw("Please insert credentials");
-    } else {
-      // At this point store the credentials to your backend!
-      return Observable.create(observer => {
-        observer.next(true);
-        observer.complete();
-      });
-    }
-  }
 
   /***
    * lanza de una pagina web
@@ -293,17 +264,19 @@ export class ConnectorProvider {
     toast.present();
   }
   ErrorToast(mensaje:string) {
-    let toast = this.toastCtrl.create({
-      message: mensaje,
-      duration: 9000,
-      position: 'middle'
-    });
+    if(DEBUG){
+      let toast = this.toastCtrl.create({
+        message: mensaje,
+        duration: 9000,
+        position: 'middle'
+      });
 
-    toast.onDidDismiss(() => {
-      console.log('Dismissed toast');
-    });
+      toast.onDidDismiss(() => {
+        console.log('Dismissed toast');
+      });
 
-    toast.present();
+      toast.present();
+    }
   }
 
 }

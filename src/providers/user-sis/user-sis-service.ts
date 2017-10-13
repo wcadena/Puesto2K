@@ -1,4 +1,4 @@
-import { URL_SERVICIOS } from './../../config/url.servicios';
+import { URL_SERVICIOS_PROD } from './../../config/url.servicios';
 
 
 
@@ -16,7 +16,7 @@ import {UserData} from "../../models/user.model";
 // para navegacion
 import {Http, URLSearchParams} from '@angular/http';
 import 'rxjs/add/operator/map';
-import { CLIENT_ID,CLIENT_SECRET,GRANT_TYPE,URL_TOKEN ,AUTHORIZATION_BEARER } from '../../config/url.servicios';
+import { AUTHORIZATION_BEARER } from '../../config/url.servicios';
 import {ConnectorProvider} from "../connector/connector";
 
 @Injectable()
@@ -49,15 +49,16 @@ export class UserSisProvider {
 
       let promesa= new Promise((resolve,reject ) =>{
 
-          let url_tok =URL_TOKEN;
+         // let url_tok =URL_TOKEN;
+        let url_tok ='URL_TOKEN';
           ///////////////////////////////////////////////////////////////
         let data = new URLSearchParams();
-        data.append("grant_type", GRANT_TYPE );
+       /* data.append("grant_type", GRANT_TYPE );
         data.append("client_id", CLIENT_ID );
         data.append("client_secret", CLIENT_SECRET );
         data.append("username", username );
         data.append("password", password );
-
+*/
 
         /////////////////////////////////////////////////////////////
           //let url_tok = "http://inventario.ecuatask.com/api/users";
@@ -91,7 +92,7 @@ export class UserSisProvider {
     let promesa= new Promise((resolve,reject ) =>{
       //let url_tok =URL_TOKEN;
       let permiso ="Bearer " + AUTHORIZATION_BEARER;
-      let url_tok = URL_SERVICIOS+"users";
+      let url_tok = URL_SERVICIOS_PROD+"users";
       this.http.get(url_tok,{ headers: { Authorization: permiso } })
         .subscribe(res => {
           this.data = res.json();
@@ -112,7 +113,7 @@ export class UserSisProvider {
     let promesa= new Promise((resolve,reject ) =>{
       //let url_tok =URL_TOKEN;
       let permiso ="Bearer " + AUTHORIZATION_BEARER;
-      let url_tok = URL_SERVICIOS+"usuario"+"?email="+email;
+      let url_tok = URL_SERVICIOS_PROD+"usuario"+"?email="+email;
       this.http.get(url_tok,{ headers: { Authorization: permiso } })
         .subscribe(res => {
           this.data = res.json();
