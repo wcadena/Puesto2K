@@ -4,9 +4,9 @@ import {UserData} from "../../models/user.model";
 import { ConnectorProvider } from "../../providers/connector/connector";
 
 import {IngresoPage} from "../ingreso/ingreso";
-import {CustodioData} from "../../models/custodios.model";
 
 import { URL_SERVICIOS_PROD } from '../../config/url.servicios';
+import {RegisterPage} from "../register/register";
 
 /**
  * Generated class for the LoginPage page.
@@ -39,8 +39,8 @@ export class LoginPage {
 
   }
 
-  public createAccount() {
-    this.nav.push('RegisterPage');
+  createAccount() {
+    this.nav.push(RegisterPage);
   }
 
 

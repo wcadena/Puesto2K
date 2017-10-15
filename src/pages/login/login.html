@@ -42,5 +42,15 @@
       </ion-row>
 
     </form>
+
+    <ion-fab bottom right >
+      <button ion-fab>
+        <ion-icon name="person-add"></ion-icon>
+      </button>
+      <ion-fab-list side="left">
+        <button ion-button round (click)='createAccount()'>Añadir Usuario</button>
+      </ion-fab-list>
+    </ion-fab>
+
   </div>
 </ion-content>

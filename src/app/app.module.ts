@@ -5,7 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
-import { IngresoPage, HomePage, LoginPage,MapaPage,MensagePage,SalidaPage } from '../pages/index.paginas';
+import { IngresoPage, HomePage, LoginPage,MapaPage,MensagePage,SalidaPage,RegisterPage } from '../pages/index.paginas';
 
 import { BarcodeScanner  } from '@ionic-native/barcode-scanner';
 import { PuestoProvider } from '../providers/puesto/puesto';
@@ -17,7 +17,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 @NgModule({
   declarations: [
     MyApp,
-    IngresoPage, HomePage, LoginPage,MapaPage,MensagePage,SalidaPage
+    IngresoPage, HomePage, LoginPage,MapaPage,MensagePage,SalidaPage, RegisterPage
   ],
   imports: [
     BrowserModule,
@@ -28,7 +28,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    IngresoPage, HomePage, LoginPage,MapaPage,MensagePage,SalidaPage
+    IngresoPage, HomePage, LoginPage,MapaPage,MensagePage,SalidaPage,RegisterPage
   ],
   providers: [
     StatusBar,
