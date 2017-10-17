@@ -29,7 +29,7 @@ export class ConnectorProvider {
     private toastCtrl: ToastController,
     http: Http) {
     this.http = http;
-    console.log('Hello ConnectorProvider Provider');
+
   }
 
 
@@ -70,8 +70,39 @@ export class ConnectorProvider {
     let promesa= new Promise((resolve,reject ) =>{
       //let url_tok =URL_TOKEN;
       let url_tok = url;
+      //get(url, parameters, headers)
+      //post(url, body, headers)
       this.http.get(url_tok,{ headers: {
         Authorization: 'Bearer ' + AUTHORIZATION_BEARER } })
+        .subscribe(res => {
+          this.data = res.json();
+          resolve(this.data);
+        }, error => {
+          this.presentToast(error);
+          this.ErrorToast( JSON.stringify(error)+"");
+          console.error(error);
+          reject(error);
+        });
+    });
+    return promesa;
+  }
+
+  public PostData(url:string){
+    let promesa= new Promise((resolve,reject ) =>{
+      //let url_tok =URL_TOKEN;
+      let url_tok = url;
+
+      //post(url, body, headers)
+
+      this.http.post(url,
+        null,
+        {
+          headers: {
+            'content-type' : 'application/x-www-form-urlencoded',
+            'cache-control' : 'no-cache',
+            'authorization' : 'Bearer '+ AUTHORIZATION_BEARER
+          }
+      })
         .subscribe(res => {
           this.data = res.json();
           resolve(this.data);
@@ -221,14 +252,13 @@ export class ConnectorProvider {
    * @returns {Promise<T>}
    */
   public consultaapiget_clave(){
-    console.log("Consulta api login");
+
     let promesa= new Promise((resolve,reject ) =>{
       //let url_tok =URL_TOKEN;
       let url_tok = URL_SERVICIOS_PROD + "api/users";
       this.http.get(url_tok,{ headers: { Authorization: 'Bearer ' + AUTHORIZATION_BEARER } })
         .subscribe(res => {
           this.data = res.json();
-          console.log(this.data);
           //this.guardar_storage()
         }, error => {
           this.presentToast(error);
@@ -254,11 +284,13 @@ export class ConnectorProvider {
     let toast = this.toastCtrl.create({
       message: mensaje,
       duration: 3000,
-      position: 'top'
+      position: 'top',
+      showCloseButton: true,
+      closeButtonText: 'Ok'
     });
 
     toast.onDidDismiss(() => {
-      console.log('Dismissed toast');
+      console.log('Toast Cerrado');
     });
 
     toast.present();
@@ -272,7 +304,7 @@ export class ConnectorProvider {
       });
 
       toast.onDidDismiss(() => {
-        console.log('Dismissed toast');
+        console.log('Toast Cerrado');
       });
 
       toast.present();

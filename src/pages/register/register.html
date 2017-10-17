@@ -15,6 +15,13 @@
 
 <ion-content padding>
 
+  <ion-item>
+    <ion-label>Compañía</ion-label>
+    <ion-select [(ngModel)]="todo.compania"  okText="Ok" cancelText="Cancelar" >
+      <ion-option *ngFor="let item of items" [value]="item.id">{{item.title}}</ion-option>
+    </ion-select>
+  </ion-item>
+
   <form (ngSubmit)="logForm()">
 
     <ion-item>
@@ -41,10 +48,10 @@
       <ion-label color="primary" stacked>Cargo</ion-label>
       <ion-input type="text" [(ngModel)]="todo.cargo" name="cargo"  placeholder="Cargo"></ion-input>
     </ion-item>
-    <ion-item>
-      <ion-label color="primary" stacked>Compañía</ion-label>
-      <ion-input type="text" [(ngModel)]="todo.compania" name="compania"  placeholder="Compañía"></ion-input>
-    </ion-item>
+
+
+
+
     <ion-item>
       <ion-label color="primary" stacked>Telefono de Contacto</ion-label>
       <ion-input type="text" [(ngModel)]="todo.telefono" name="telefono"  placeholder="Telefono de Contacto"></ion-input>
@@ -60,7 +67,13 @@
 
 
 
-    <button ion-button type="submit" block>Add Todo</button>
+    <button ion-button type="submit" block>Ingresar Empleado</button>
   </form>
+
+
+
+
+
+
 
 </ion-content>
