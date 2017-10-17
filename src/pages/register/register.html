@@ -15,12 +15,7 @@
 
 <ion-content padding>
 
-  <ion-item>
-    <ion-label>Compañía</ion-label>
-    <ion-select [(ngModel)]="todo.compania"  okText="Ok" cancelText="Cancelar" >
-      <ion-option *ngFor="let item of items" [value]="item.id">{{item.title}}</ion-option>
-    </ion-select>
-  </ion-item>
+
 
   <form (ngSubmit)="logForm()">
 
@@ -49,20 +44,38 @@
       <ion-input type="text" [(ngModel)]="todo.cargo" name="cargo"  placeholder="Cargo"></ion-input>
     </ion-item>
 
-
-
-
     <ion-item>
-      <ion-label color="primary" stacked>Telefono de Contacto</ion-label>
-      <ion-input type="text" [(ngModel)]="todo.telefono" name="telefono"  placeholder="Telefono de Contacto"></ion-input>
+      <ion-label color="primary" stacked>Compañía</ion-label>
+      <ion-select [(ngModel)]="todo.compania"  okText="Ok" cancelText="Cancelar"  [ngModelOptions]="{standalone: true}" >
+        <ion-option *ngFor="let item of empresas" [value]="item.empresa">{{item.empresa}}</ion-option>
+      </ion-select>
     </ion-item>
+
     <ion-item>
       <ion-label color="primary" stacked>Area</ion-label>
-      <ion-input type="text" [(ngModel)]="todo.area_piso" name="area_piso"  placeholder="Area"></ion-input>
+      <ion-select [(ngModel)]="todo.area_piso"  okText="Ok" cancelText="Cancelar"  [ngModelOptions]="{standalone: true}" >
+        <ion-option *ngFor="let item of areas" [value]="item.area">{{item.area}}</ion-option>
+      </ion-select>
     </ion-item>
+
     <ion-item>
       <ion-label color="primary" stacked>Correo</ion-label>
       <ion-input type="text" [(ngModel)]="todo.email" name="email"  placeholder="Correo"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Telefono</ion-label>
+      <ion-input type="text" [(ngModel)]="todo.telefono" name="telefono"  placeholder="Telefono de Contacto"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Celular</ion-label>
+      <ion-input type="text" [(ngModel)]="todo.celular" name="celular"  placeholder="Telefono Celular"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Ext</ion-label>
+      <ion-input type="text" [(ngModel)]="todo.ext" name="ext"  placeholder="Extencion de contacto"></ion-input>
     </ion-item>
 
 

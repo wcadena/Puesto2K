@@ -27,22 +27,55 @@ export class RegisterPage {
     nombre_responsable: '',
     area_piso: '',
     email: '',
+    celular:'',
+    ext:'',
   };
 
-  items:any;
+  empresas:any;
+  areas:any;
 
   constructor(
     public navCtrl: NavController,
     private _con:ConnectorProvider
   ) {
-    this.items = [
-      {title: 'item1',id: '1'},
-      {title: 'item2',id: '2'},
-      {title: 'item3',id: '3'},
-      {title: 'item4',id: '4'},
-      {title: 'item5',id: '5'},
-      {title: 'item6',id: '6'}
-    ];
+    /**
+     * empresas api
+     * @type {string}
+     */
+    let url =URL_SERVICIOS_PROD + 'api/empresas';
+    let empresasapi=this._con.ConsultaGet(url);
+
+    empresasapi.then((value) => {
+
+      this.empresas = value['data'];
+    }).catch((err) => {
+      console.error(err);
+    });
+    this.areas = [];
+    let url2 =URL_SERVICIOS_PROD + 'api/areas?per_page=50';
+    this.getArea(url2);
+  }
+
+  getArea(url){
+    /**
+     * areas api
+     * @type {string}
+     */
+    let url2 =url;//URL_SERVICIOS_PROD + 'api/areas?per_page=50';
+    let areasasapi=this._con.ConsultaGet(url2);
+
+    areasasapi.then((value) => {
+      let datto = value['data'];
+      let total_pages = parseInt(value['meta']['pagination']['total_pages']);
+      let current_page = parseInt(value['meta']['pagination']['current_page']);
+      if( current_page < total_pages ){
+        this.getArea(value['meta']['pagination']['links']['next']);
+      }
+      this.areas = this.areas.concat(datto);
+      return ;
+    }).catch((err) => {
+      console.error(err);
+    });
   }
 
   logForm() {
@@ -56,6 +89,8 @@ export class RegisterPage {
     "telefono="+this.todo.telefono+"&"+
     "nombre_responsable="+this.todo.nombre_responsable+"&"+
     "area_piso="+this.todo.area_piso+"&"+
+      "celular="+this.todo.celular+"&"+
+      "ext="+this.todo.ext+"&"+
     "email="+this.todo.email+"";
     let url = URL_SERVICIOS_PROD + "api/custodios?"+data;
 
