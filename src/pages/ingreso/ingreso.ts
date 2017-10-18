@@ -6,6 +6,7 @@ import { ConnectorProvider } from "../../providers/connector/connector";
 import {CustodioData} from "../../models/custodios.model";
 import {LoginPage} from "../login/login";
 import {URL_SERVICIOS_PROD} from "../../config/url.servicios";
+import {MapaPage} from "../mapa/mapa";
 /**
  * Generated class for the IngresoPage page.
  *
@@ -20,7 +21,7 @@ import {URL_SERVICIOS_PROD} from "../../config/url.servicios";
 })
 export class IngresoPage {
 
-  registerCredentials = { documentoIdentificacion: '', codigo: 'asd1', nombre : '' , salida: false};
+  registerCredentials = { documentoIdentificacion: '', codigo: 'asd1', nombre : '' , salida: false, scan: false};
   custodio : CustodioData;
   public data:any;
   constructor(
@@ -50,7 +51,7 @@ export class IngresoPage {
     console.log(this.registerCredentials.codigo);
 
     let url = URL_SERVICIOS_PROD + "api/puesto_asigna?documentoIdentificacion="+this.registerCredentials.documentoIdentificacion+
-      "&codigo="+this.registerCredentials.codigo+"&horas="+8;
+      "&codigo="+this.registerCredentials.codigo+"&horas="+9;
     var conecta = this._con.ConsultaGet(url);
     conecta.then((value) => {
       console.log(value);
@@ -77,7 +78,7 @@ export class IngresoPage {
     });
   }
   scanner() {
-    console.log('scanner');
+    this.registerCredentials.scan=true;
     this.barcodeScanner.scan().then((barcodeData) => {
       console.log('Success! Barcode data is here');
       console.log(barcodeData.text);
@@ -92,6 +93,9 @@ export class IngresoPage {
   }
   enviarPuesto(){
     console.log("Envia datos");
+  }
+  buscar(){
+    this.navCtrl.push(MapaPage);
   }
 
 }

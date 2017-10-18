@@ -283,7 +283,7 @@ export class ConnectorProvider {
   presentToast(mensaje:string) {
     let toast = this.toastCtrl.create({
       message: mensaje,
-      duration: 3000,
+      duration: 5000,
       position: 'top',
       showCloseButton: true,
       closeButtonText: 'Ok'
