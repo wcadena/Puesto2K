@@ -216,7 +216,7 @@ export class ConnectorProvider {
           .then( () =>{
             if(tipo=='user'){
               this.storage.get('user').then((val) => {
-                this.currentUser = val;
+                this.currentUser = new UserData(val);
                 resolve(this.currentUser);
               });
             }else{

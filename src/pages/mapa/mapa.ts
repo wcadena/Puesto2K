@@ -18,7 +18,6 @@ import {MapaProvider} from "../../providers/mapa/mapa";
 export class MapaPage {
 
   rootPage:any = IngresoPage;
-  private isOn: boolean = false;
 
   title: string = 'Mi ubicación';
   lat: number = 51.678418;
