@@ -1,18 +1,23 @@
 import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Platform} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ToastController } from 'ionic-angular';
 import { ConnectorProvider } from '../providers/connector/connector';
-import { IngresoPage, LoginPage } from '../pages/index.paginas';
+import { IngresoPage, LoginPage, MapaPage } from '../pages/index.paginas';
+import {ImagenPage} from "../pages/imagen/imagen";
+
+
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   rootPage:any = IngresoPage;
+  public menuOpcion = { presentar: false};
 
   constructor(platform: Platform,
+
     statusBar: StatusBar,
     splashScreen: SplashScreen,
     private toastCtrl: ToastController,
@@ -26,8 +31,11 @@ export class MyApp {
            }else if(this._us.currentUser.token_type != null){
              this.presentToast("Bienvenido Usuario "+this._us.currentUser.token_type);
              this.rootPage = IngresoPage;
+             this.menuOpcion.presentar = true ;
+             //MENU = true;
            }else{
-             this.rootPage = LoginPage;
+             var log = LoginPage;
+             this.rootPage = log;
            };
            statusBar.styleDefault();
            splashScreen.hide();
@@ -55,5 +63,14 @@ export class MyApp {
 
      toast.present();
    }
+   ir_mapa(){
+     //this.navCtrl.push(MapaPage);
+     this.rootPage = MapaPage;
+   }
+  ir_imagen(){
+    //this.navCtrl.push(MapaPage);
+    this.rootPage = ImagenPage;
+  }
+
 }
 

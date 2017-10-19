@@ -6,7 +6,7 @@ import { ConnectorProvider } from "../../providers/connector/connector";
 import {CustodioData} from "../../models/custodios.model";
 import {LoginPage} from "../login/login";
 import {URL_SERVICIOS_PROD} from "../../config/url.servicios";
-import {MapaPage} from "../mapa/mapa";
+import {BuscapersonaPage} from "../buscapersona/buscapersona";
 /**
  * Generated class for the IngresoPage page.
  *
@@ -95,7 +95,7 @@ export class IngresoPage {
     console.log("Envia datos");
   }
   buscar(){
-    this.navCtrl.push(MapaPage);
+    this.navCtrl.push(BuscapersonaPage);
   }
 
 }

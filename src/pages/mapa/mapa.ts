@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {  NavController, NavParams } from 'ionic-angular';
+import {IngresoPage} from "../ingreso/ingreso";
 
 /**
  * Generated class for the MapaPage page.
@@ -8,14 +9,39 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  * on Ionic pages and navigation.
  */
 
-@IonicPage()
+
 @Component({
   selector: 'page-mapa',
   templateUrl: 'mapa.html',
 })
 export class MapaPage {
 
+  rootPage:any = IngresoPage;
+  private isOn: boolean = false;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+  }
+
+  getButtonText(): string {
+    return `Switch ${ this.isOn ? 'Off' : 'On' }`;
+  }
+  setState(): void {
+    this.isOn = !this.isOn;
+  }
+
+  toggleDetails() {
+    this.isOn = !this.isOn;
+  }
+  ir_ingreso() {
+
+    this.navCtrl.setRoot(IngresoPage);
+  }
+
+  busqueda(dato:string){
+    console.log(dato);
+  }
+  busquedaCancel(dato:string){
+    console.log(dato);
   }
 
   ionViewDidLoad() {

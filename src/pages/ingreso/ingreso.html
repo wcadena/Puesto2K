@@ -3,7 +3,7 @@
     <button ion-button icon-only menuToggle>
       <ion-icon name='menu'></ion-icon>
     </button>
-    <ion-title start>Puestos 2K</ion-title>
+    <ion-title start>Puestos 2K </ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="salir()">
         <ion-icon name="log-out"></ion-icon>
@@ -11,6 +11,8 @@
     </ion-buttons>
   </ion-navbar>
 </ion-header>
+
+
 <ion-content padding="true" class="has-header">
   <h1>Bienvenido {{registerCredentials.nombre}}</h1>
   <form id="ingreso-form1" class="list" (ngSubmit)="enviarPuesto()" #registerForm="ngForm" >
@@ -28,8 +30,8 @@
       <ion-item *ngIf="registerCredentials.salida">
         <button id="ingreso-button3" ion-button block large (click)='enviaEventoSalida()' [disabled]="!registerCredentials.salida" >Salida</button>
       </ion-item>
-      <ion-item >
-        <button id="buscar-button" ion-button block large (click)='buscar()' >Buscar</button>
+      <ion-item>
+        <button id="buscar-button4" ion-button block large (click)='buscar()' >Buscar</button>
       </ion-item>
 
     </ion-list>

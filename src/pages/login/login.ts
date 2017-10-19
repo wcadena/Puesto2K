@@ -7,6 +7,8 @@ import {IngresoPage} from "../ingreso/ingreso";
 
 import { URL_SERVICIOS_PROD } from '../../config/url.servicios';
 import {RegisterPage} from "../register/register";
+import {MyApp} from "../../app/app.component";
+
 
 /**
  * Generated class for the LoginPage page.
@@ -24,18 +26,20 @@ export class LoginPage {
   homepage:any;
   public currentUser: UserData;
   loading: Loading;
+  menuD:boolean;
   registerCredentials = { cedula: '1718097080' };
+
 
 
   constructor(
     private nav: NavController,
-
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
-    private _con:ConnectorProvider
+    private _con:ConnectorProvider,
+
   ) {
     //declara la pagina a dondedebe ir
-    this.homepage =IngresoPage;
+    this.homepage =MyApp;
 
   }
 
@@ -57,6 +61,7 @@ export class LoginPage {
       this._con.currentUser = new UserData(localStorage.getItem(this.registerCredentials.cedula));
       this._con.guardar_storage(this.registerCredentials.cedula);
       this._con.guardar_en_storage('CustodioData',value);
+      this.menuD = true;
       this.nav.setRoot(this.homepage);
      }).catch((err) => {
       console.error(err);
