@@ -13,6 +13,9 @@ import {HttpModule} from '@angular/http';
 import { ConnectorProvider } from '../providers/connector/connector';
 import { IonicStorageModule } from '@ionic/storage';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { Geolocation } from '@ionic-native/geolocation';
+import { MapaProvider } from '../providers/mapa/mapa';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyC5EbqGuS_Vnn_LemMkFXirQMGL1ln7S8A'
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -36,9 +42,11 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     BarcodeScanner,
     InAppBrowser,
     AlertController,
+    Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     PuestoProvider,
-    ConnectorProvider
+    ConnectorProvider,
+    MapaProvider
   ]
 })
 export class AppModule {}

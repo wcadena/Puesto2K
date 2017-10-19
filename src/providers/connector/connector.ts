@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import {Observable} from 'rxjs/Observable';
 import { Http } from '@angular/http';
 import { ToastController , Platform} from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
@@ -90,7 +89,6 @@ export class ConnectorProvider {
   public PostData(url:string){
     let promesa= new Promise((resolve,reject ) =>{
       //let url_tok =URL_TOKEN;
-      let url_tok = url;
 
       //post(url, body, headers)
 

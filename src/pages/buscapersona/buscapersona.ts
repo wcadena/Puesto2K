@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {IngresoPage} from "../ingreso/ingreso";
+
 
 /**
  * Generated class for the BuscapersonaPage page.

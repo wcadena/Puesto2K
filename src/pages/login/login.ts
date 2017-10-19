@@ -3,8 +3,6 @@ import {AlertController,  Loading, LoadingController, NavController} from 'ionic
 import {UserData} from "../../models/user.model";
 import { ConnectorProvider } from "../../providers/connector/connector";
 
-import {IngresoPage} from "../ingreso/ingreso";
-
 import { URL_SERVICIOS_PROD } from '../../config/url.servicios';
 import {RegisterPage} from "../register/register";
 import {MyApp} from "../../app/app.component";

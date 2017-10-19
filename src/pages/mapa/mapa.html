@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Buscar en mapa ss</ion-title>
+    <ion-title>{{ title }}</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="ir_ingreso()">
         <ion-icon name="arrow-back"></ion-icon>
@@ -18,16 +18,10 @@
 </ion-header>
 
 
-<ion-content padding>
-  <ion-title *ngIf="!isOn">Feedback</ion-title>
-
-  <ion-searchbar  *ngIf="isOn"
-    [(ngModel)]="myInput"
-    [showCancelButton]="shouldShowCancel"
-    (ionInput)="onInput(busqueda())"
-    (ionCancel)="onCancel(busquedaCancel())">
-  </ion-searchbar>
-  <ion-buttons end>
-    <button (click)="toggleDetails()" ><ion-icon ios="ios-search" md="md-search"></ion-icon></button>
-  </ion-buttons>
+<ion-content>
+  <!-- this creates a google map on the page with the given lat/lng from -->
+  <!-- the component as the initial center of the map: -->
+  <agm-map [latitude]="lat" [longitude]="lng">
+    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+  </agm-map>
 </ion-content>
