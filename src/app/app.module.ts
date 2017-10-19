@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
-import {AlertController, IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
+import { AlertController, IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
@@ -9,13 +9,15 @@ import { IngresoPage, HomePage, LoginPage,MapaPage,MensagePage,SalidaPage,Regist
 
 import { BarcodeScanner  } from '@ionic-native/barcode-scanner';
 import { PuestoProvider } from '../providers/puesto/puesto';
-import {HttpModule} from '@angular/http';
+import { HttpModule } from '@angular/http';
 import { ConnectorProvider } from '../providers/connector/connector';
 import { IonicStorageModule } from '@ionic/storage';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { Geolocation } from '@ionic-native/geolocation';
 import { MapaProvider } from '../providers/mapa/mapa';
 import { AgmCoreModule } from '@agm/core';
+import { Camera } from '@ionic-native/camera';
+import { ImagePicker } from '@ionic-native/image-picker';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { AgmCoreModule } from '@agm/core';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     PuestoProvider,
     ConnectorProvider,
-    MapaProvider
+    MapaProvider,
+    Camera,
+    ImagePicker
   ]
 })
 export class AppModule {}

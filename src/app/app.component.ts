@@ -4,8 +4,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ToastController } from 'ionic-angular';
 import { ConnectorProvider } from '../providers/connector/connector';
-import { IngresoPage, LoginPage, MapaPage } from '../pages/index.paginas';
-import {ImagenPage} from "../pages/imagen/imagen";
+import { IngresoPage, LoginPage } from '../pages/index.paginas';
+
 
 
 
@@ -14,7 +14,7 @@ import {ImagenPage} from "../pages/imagen/imagen";
 })
 export class MyApp {
   rootPage:any = IngresoPage;
-  public menuOpcion = { presentar: false};
+
 
   constructor(platform: Platform,
 
@@ -31,7 +31,7 @@ export class MyApp {
            }else if(this._us.currentUser.token_type != null){
              this.presentToast("Bienvenido Usuario "+this._us.currentUser.token_type);
              this.rootPage = IngresoPage;
-             this.menuOpcion.presentar = true ;
+
              //MENU = true;
            }else{
              var log = LoginPage;
@@ -63,14 +63,7 @@ export class MyApp {
 
      toast.present();
    }
-   ir_mapa(){
-     //this.navCtrl.push(MapaPage);
-     this.rootPage = MapaPage;
-   }
-  ir_imagen(){
-    //this.navCtrl.push(MapaPage);
-    this.rootPage = ImagenPage;
-  }
+
 
 }
 

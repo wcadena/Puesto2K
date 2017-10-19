@@ -7,6 +7,8 @@ import {CustodioData} from "../../models/custodios.model";
 import {LoginPage} from "../login/login";
 import {URL_SERVICIOS_PROD} from "../../config/url.servicios";
 import {BuscapersonaPage} from "../buscapersona/buscapersona";
+import {MapaPage} from "../mapa/mapa";
+import {ImagenPage} from "../imagen/imagen";
 /**
  * Generated class for the IngresoPage page.
  *
@@ -96,6 +98,15 @@ export class IngresoPage {
   }
   buscar(){
     this.navCtrl.push(BuscapersonaPage);
+  }
+
+  ir_mapa(){
+    //this.navCtrl.push(MapaPage);
+    this.navCtrl.push(MapaPage) ;
+  }
+  ir_imagen(){
+    //this.navCtrl.push(MapaPage);
+    this.navCtrl.push(ImagenPage) ;
   }
 
 }

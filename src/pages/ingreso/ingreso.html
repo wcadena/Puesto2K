@@ -13,7 +13,7 @@
 </ion-header>
 
 
-<ion-content padding="true" class="has-header">
+<ion-content padding="true" class="has-header" #mycontent_menu >
   <h1>Bienvenido {{registerCredentials.nombre}}</h1>
   <form id="ingreso-form1" class="list" (ngSubmit)="enviarPuesto()" #registerForm="ngForm" >
     <ion-list>
@@ -37,3 +37,25 @@
     </ion-list>
   </form>
 </ion-content>
+
+<ion-menu [content]="mycontent_menu"  >
+  <ion-header>
+    <ion-toolbar color="red">
+      <ion-title>Menú</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+
+      <button ion-button full icon-start (click)="ir_mapa()">
+        <ion-icon name="star"></ion-icon>
+        Ver Mapa
+      </button>
+
+      <button ion-button full icon-start (click)="ir_imagen()">
+        <ion-icon name="star"></ion-icon>
+        Sube tu imagen
+      </button>
+    </ion-list>
+  </ion-content>
+</ion-menu>

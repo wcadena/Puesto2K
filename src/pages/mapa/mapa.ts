@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import {  NavController, NavParams } from 'ionic-angular';
-import {IngresoPage} from "../ingreso/ingreso";
 import {MapaProvider} from "../../providers/mapa/mapa";
 
 /**
@@ -16,8 +15,6 @@ import {MapaProvider} from "../../providers/mapa/mapa";
   templateUrl: 'mapa.html',
 })
 export class MapaPage {
-
-  rootPage:any = IngresoPage;
 
   title: string = 'Mi ubicación';
   lat: number = 51.678418;
@@ -35,12 +32,6 @@ export class MapaPage {
       this.lng = data.coords.longitude;
       this.lat = data.coords.latitude;
     });
-  }
-
-
-  ir_ingreso() {
-
-    this.navCtrl.setRoot(IngresoPage);
   }
 
 

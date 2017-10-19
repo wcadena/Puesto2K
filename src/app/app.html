@@ -1,24 +1,4 @@
-<ion-menu [content]="mycontent_menu" *ngIf="menuOpcion.presentar" >
-  <ion-header>
-    <ion-toolbar color="red">
-      <ion-title>Menú</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content>
-    <ion-list>
 
-      <button ion-button full icon-start (click)="ir_mapa()">
-        <ion-icon name="star"></ion-icon>
-        Ver Mapa
-      </button>
 
-      <button ion-button full icon-start (click)="ir_imagen()">
-        <ion-icon name="star"></ion-icon>
-        Sube tu imagen
-      </button>
-    </ion-list>
-  </ion-content>
-</ion-menu>
-
-<ion-nav [root]="rootPage" #mycontent_menu  ></ion-nav>
+<ion-nav [root]="rootPage" ></ion-nav>
 
