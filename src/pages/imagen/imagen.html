@@ -10,13 +10,13 @@
 
     </ion-buttons>
 
-    <ion-title>{{ titulo  }}</ion-title>
+    <ion-title>Subir imagen a perfil</ion-title>
 
     <ion-buttons end>
 
       <button ion-button (click)="crear_post()"
-              [disabled]=" titulo.length <= 1 || imagenPreview.length <= 1 ">
-        Crear post
+              [disabled]=" imagenPreview.length <= 1 ">
+        Subir imagen
       </button>
 
     </ion-buttons>
@@ -30,11 +30,6 @@
 <ion-content padding>
 
   <ion-list>
-
-    <ion-item>
-      <ion-label floating>Titulo</ion-label>
-      <ion-input type="text" [(ngModel)]="titulo"></ion-input>
-    </ion-item>
 
     <ion-item *ngIf="imagenPreview">
       <img [src]="imagenPreview">
@@ -60,6 +55,8 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+
+  <textarea class="text-input text-input-ios" aria-labelledby="lbl-4" autocomplete="off" autocorrect="off" placeholder="">[{{imagenPreview}}].</textarea>
 
 
 </ion-content>

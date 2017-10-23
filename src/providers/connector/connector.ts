@@ -86,14 +86,14 @@ export class ConnectorProvider {
     return promesa;
   }
 
-  public PostData(url:string){
+  public PostData(url:string,data:any = null){
     let promesa= new Promise((resolve,reject ) =>{
       //let url_tok =URL_TOKEN;
 
       //post(url, body, headers)
 
       this.http.post(url,
-        null,
+        data,
         {
           headers: {
             'content-type' : 'application/x-www-form-urlencoded',
