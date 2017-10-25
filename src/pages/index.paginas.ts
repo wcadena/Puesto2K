@@ -7,3 +7,4 @@ export {MensagePage} from "./mensage/mensage";
 export {SalidaPage} from "./salida/salida";
 export {ImagenPage} from "./imagen/imagen";
 export {BuscapersonaPage} from "./buscapersona/buscapersona";
+export {SubePage} from "./sube/sube";

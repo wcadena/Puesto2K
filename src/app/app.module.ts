@@ -5,7 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
-import { IngresoPage, HomePage, LoginPage,MapaPage,MensagePage,SalidaPage,RegisterPage,ImagenPage,BuscapersonaPage } from '../pages/index.paginas';
+import { IngresoPage, HomePage, LoginPage,MapaPage,MensagePage,SalidaPage,RegisterPage,ImagenPage,BuscapersonaPage,SubePage } from '../pages/index.paginas';
 
 import { BarcodeScanner  } from '@ionic-native/barcode-scanner';
 import { PuestoProvider } from '../providers/puesto/puesto';
@@ -18,11 +18,14 @@ import { MapaProvider } from '../providers/mapa/mapa';
 import { AgmCoreModule } from '@agm/core';
 import { Camera } from '@ionic-native/camera';
 import { ImagePicker } from '@ionic-native/image-picker';
+import { FileTransfer} from '@ionic-native/file-transfer';
+import { File } from '@ionic-native/file';
+import { Transfer } from '@ionic-native/transfer';
 
 @NgModule({
   declarations: [
     MyApp,
-    IngresoPage, HomePage, LoginPage,MapaPage,MensagePage,SalidaPage, RegisterPage,ImagenPage,BuscapersonaPage
+    IngresoPage, HomePage, LoginPage,MapaPage,MensagePage,SalidaPage, RegisterPage,ImagenPage,BuscapersonaPage,SubePage
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,7 @@ import { ImagePicker } from '@ionic-native/image-picker';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    IngresoPage, HomePage, LoginPage,MapaPage,MensagePage,SalidaPage,RegisterPage,ImagenPage,BuscapersonaPage
+    IngresoPage, HomePage, LoginPage,MapaPage,MensagePage,SalidaPage,RegisterPage,ImagenPage,BuscapersonaPage,SubePage
   ],
   providers: [
     StatusBar,
@@ -50,7 +53,10 @@ import { ImagePicker } from '@ionic-native/image-picker';
     ConnectorProvider,
     MapaProvider,
     Camera,
-    ImagePicker
+    ImagePicker,
+    FileTransfer,
+    File,
+    Transfer
   ]
 })
 export class AppModule {}

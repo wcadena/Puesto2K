@@ -9,6 +9,7 @@ import {URL_SERVICIOS_PROD} from "../../config/url.servicios";
 import {BuscapersonaPage} from "../buscapersona/buscapersona";
 import {MapaPage} from "../mapa/mapa";
 import {ImagenPage} from "../imagen/imagen";
+import {SubePage} from "../sube/sube";
 /**
  * Generated class for the IngresoPage page.
  *
@@ -107,6 +108,10 @@ export class IngresoPage {
   ir_imagen(){
     //this.navCtrl.push(MapaPage);
     this.navCtrl.push(ImagenPage) ;
+  }
+  ir_descargaimagen(){
+    //this.navCtrl.push(MapaPage);
+    this.navCtrl.push(SubePage) ;
   }
 
 }
