@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {URL_SERVICIOS_PROD} from "../../config/url.servicios";
 
 
 /**
@@ -18,9 +19,10 @@ export class BuscapersonaPage {
 
   myInput:any = {
     nombre:"Wagner Cadena",
-    imagen:"http://inventario3.aerogal.dev/img/user2-160x160.jpg",
+    imagen: URL_SERVICIOS_PROD + "/img/user2-160x160.jpg",
     cargo: "Especialista de soporte en sitio",
-    ext: "1045"
+    ext: "1045",
+    mapa: URL_SERVICIOS_PROD + "/img/perfil/BVP7GgSAGD2kCtpXZNZgTjWOowHTpe2RIfsvBkme.png",
 }
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
