@@ -18,13 +18,43 @@
 <ion-content padding>
   <ion-title *ngIf="!isOn">Feedback</ion-title>
 
-  <ion-searchbar  *ngIf="isOn"
-                  [(ngModel)]="myInput"
-                  [showCancelButton]="shouldShowCancel"
-                  (ionInput)="onInput(busqueda())"
-                  (ionCancel)="onCancel(busquedaCancel())">
+  <ion-searchbar
+    [(ngModel)]="myInput.nombre"
+    [showCancelButton]="shouldShowCancel"
+    (ionInput)="onInput($event)"
+    (ionCancel)="onCancel($event)">
   </ion-searchbar>
   <ion-buttons end>
     <button (click)="toggleDetails()" ><ion-icon ios="ios-search" md="md-search"></ion-icon></button>
   </ion-buttons>
+  <!---------------------------------------------------------------------->
+  <ion-card>
+
+    <ion-img width="300" height="300" [src]="myInput.imagen" style="align-items: center" ></ion-img>
+
+
+    <ion-card-content>
+      <ion-card-title>
+        {{myInput.nombre}}
+      </ion-card-title>
+
+    </ion-card-content>
+
+    <ion-item>
+      <ion-icon name='briefcase' item-start style="color: #d03e84"></ion-icon>
+      {{myInput.cargo}}
+      <ion-badge item-end>Ext: {{myInput.ext}}</ion-badge>
+    </ion-item>
+
+    <ion-item>
+      <div style="position: relative;">
+        <img id="imagensampler2" width="805" height="615" src="http://inventario3.aerogal.dev/img/perfil/BVP7GgSAGD2kCtpXZNZgTjWOowHTpe2RIfsvBkme.png"
+             style="position:relative;"/>
+        <div id="aqui3" style="position: absolute; left: 356px; top: 72px;">
+          <ion-icon ios="ios-flag" md="md-flag" item-start style="color: #f53d3d" ></ion-icon>
+        </div>
+      </div>
+    </ion-item>
+
+  </ion-card>
 </ion-content>
