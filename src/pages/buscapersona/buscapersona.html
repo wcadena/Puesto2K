@@ -24,9 +24,11 @@
     (ionInput)="onInput($event)"
     (ionCancel)="onCancel($event)">
   </ion-searchbar>
-  <ion-buttons end>
-    <button (click)="toggleDetails()" ><ion-icon ios="ios-search" md="md-search"></ion-icon></button>
-  </ion-buttons>
+  <button ion-button icon-end  block  (click)="buscar()" >
+    Buscar
+    <ion-icon name="ios-search"></ion-icon>
+  </button>
+
   <!---------------------------------------------------------------------->
   <ion-card>
 

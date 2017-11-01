@@ -13,6 +13,9 @@ export class  CustodioData {
   fechaActualizacion:	Date	;
   fechaEliminacion: Date ;
   links : any ;
+  celular :string;
+  ext:string;
+  image:string;
 
 
 
@@ -26,9 +29,12 @@ export class  CustodioData {
               compania:string,
               telefono:string,
               estado:string,
+              celular:string,
+              ext:string,
               fechaCreacion:Date,
               fechaActualizacion:Date,
               fechaEliminacion:Date,
+              image:string,
               links : any) {
     this.id = id;
     this.pais = pais;
@@ -39,6 +45,9 @@ export class  CustodioData {
     this.compania = compania;
     this.telefono = telefono;
     this.estado = estado;
+    this.celular = celular;
+    this.ext = ext;
+    this.image = image;
     this.fechaCreacion = fechaCreacion;
     this.fechaActualizacion = fechaActualizacion;
     this.fechaEliminacion = fechaEliminacion;
